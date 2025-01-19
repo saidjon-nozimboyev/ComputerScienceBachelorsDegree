@@ -6,6 +6,6 @@ int main()
     printf("Ali please enter number: ");
     scanf("%i", &a);
     printf("Your number is %i", a);
-    // minor chan
+    // minor
     return 0;
 }
