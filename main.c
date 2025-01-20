@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(void)
+int main(voi)
 {
     int a;
     printf("Ali please enter number: ");
