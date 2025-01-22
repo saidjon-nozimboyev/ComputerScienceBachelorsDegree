@@ -17,3 +17,7 @@ void SayHello(void)
     printf("Hello Ali\n");
     printf("You are in function call\n");
 }
+
+// this is commenr
+// fk 
+
