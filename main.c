@@ -21,3 +21,8 @@ void SayHello(void)
 // this is commenr
 // fk 
 
+/*
+
+
+this is also a comment
+*/
