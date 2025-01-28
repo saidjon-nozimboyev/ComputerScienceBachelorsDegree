@@ -12,5 +12,9 @@ int main()
         digit_counter++; // digit_counter = digit_counter +1
     }
     printf("The numnber of digits: %i", digit_counter);
-
+    int a =15;
+    int b =10;
+    if (a = b){
+        printf("Hello");
+    }
 }
