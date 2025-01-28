@@ -14,4 +14,3 @@ int main()
     printf("The numnber of digits: %i", digit_counter);
 
 }
- 
