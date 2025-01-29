@@ -6,4 +6,5 @@ int main(){
     if (a = b){
         printf("Wokred");
     }
+    
 }   
