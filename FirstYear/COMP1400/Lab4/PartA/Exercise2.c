@@ -2,8 +2,8 @@
 
 int main()
 {
-    printf("Hello!");
-    printf("My name is: \** Saidjon \**");
-    printf("Field of Study: \" Computer Science\"");
-    printf("Thanks :)");
+    printf("Hello!\n");
+    printf("My name is: ** Saidjon **\n");
+    printf("Field of Study: \" Computer Science\"\n");
+    printf("Thanks :)\n");
 }
