@@ -11,5 +11,5 @@ int main()
     printf("%d",a++);
     int c = ++a - b--;
     printf("%d",c);
-
+    // test
 }
