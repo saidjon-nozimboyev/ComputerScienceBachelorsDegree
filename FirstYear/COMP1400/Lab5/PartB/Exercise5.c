@@ -61,6 +61,6 @@ int main()
             reverse /= 10;
         }
         printf("Sum is: %i\n", sum);
-        printf("Check digit is: %i", (10 - (sum % 10)) % 10);
+        printf("Check digit is: %i", (10 - (sum % 10)));
     }
 }
