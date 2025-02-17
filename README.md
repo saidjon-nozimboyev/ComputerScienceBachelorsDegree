@@ -37,7 +37,7 @@ Here are some of the technologies and tools I frequently use:
 
 I'm always open to collaborations, discussions, or just a friendly chat. Reach out to me via:
 
-- **LinkedIn**: [Saidjon Nozimboev](https://www.linkedin.com/in/saidjon-nozimboev-21661a28a/)
+- **LinkedIn**: [Saidjon Nozimboev](https://www.linkedin.com/in/saidjon-nozimboev-21661a28a/).
 ---
 
 ⭐️ Thank you for visiting my repository! I hope you find something interesting here. Don't forget to leave a star if you like my work! ⭐️
