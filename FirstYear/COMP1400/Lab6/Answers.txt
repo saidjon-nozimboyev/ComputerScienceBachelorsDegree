@@ -8,4 +8,3 @@ before confirming by running the programs)
 
 2. What does the line “i = 2;” do in the switch case? Why doesn’t it trigger case 2?
 2. The line i = 2; inside a switch statement assigns the value 2 to i, but it does not cause the switch statement to jump to case 2.
-
