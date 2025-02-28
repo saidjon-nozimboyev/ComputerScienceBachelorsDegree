@@ -1,0 +1,11 @@
+
+1. What will be the output for program A and program B? (Try to figure out the outputs first
+before confirming by running the programs)
+
+1. program A will output ("Hi. This is case 0 \n") and "Hi. and (This is case 1 \n")
+   program B will output ("Hi. This is case 0 \n") and "Hi. and (This is case 1 \n")
+
+
+2. What does the line “i = 2;” do in the switch case? Why doesn’t it trigger case 2?
+2. The line i = 2; inside a switch statement assigns the value 2 to i, but it does not cause the switch statement to jump to case 2.
+
