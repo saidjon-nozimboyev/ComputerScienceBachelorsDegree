@@ -81,7 +81,7 @@
 //         {
 //             int num;
 //             char operation2;
-//             char continueUnary = 'y'; 
+//             char continueUnary = 'y';
 
 //             while (continueUnary == 'y' || continueUnary == 'Y')
 //             {
@@ -130,7 +130,7 @@
 //         {
 //             int a = 0, b = 0, c = 0, d = 0, e = 0;
 //             char var;
-//             char continueVariable = 'y'; 
+//             char continueVariable = 'y';
 
 //             while (continueVariable == 'y' || continueVariable == 'Y')
 //             {
@@ -183,7 +183,7 @@
 //         case 'A':
 //         {
 //             char operation3;
-//             char continueAdvanced = 'y'; 
+//             char continueAdvanced = 'y';
 
 //             while (continueAdvanced == 'y' || continueAdvanced == 'Y')
 //             {
@@ -228,7 +228,7 @@
 //                         break;
 //                     default:
 //                         printf("Invalid operation. Please try again.\n");
-//                         continue; 
+//                         continue;
 //                     }
 //                     break;
 //                 }
@@ -269,7 +269,7 @@
 //                         break;
 //                     default:
 //                         printf("Invalid operation. Please try again.\n");
-//                         continue; 
+//                         continue;
 //                     }
 //                     break;
 //                 }
@@ -277,12 +277,12 @@
 //                 case 'e':
 //                 case 'E':
 //                     printf("Returning to the main menu.\n");
-//                     continueAdvanced = 'n'; 
+//                     continueAdvanced = 'n';
 //                     break;
 
 //                 default:
 //                     printf("Invalid operation. Please try again.\n");
-//                     continue; 
+//                     continue;
 //                 }
 
 //                 if (continueAdvanced == 'y' || continueAdvanced == 'Y')
@@ -316,7 +316,6 @@ int main()
 {
     char input;
     int continueProgram = 1;
-    // Define variables with float type instead of int
     float a = 0.0, b = 0.0, c = 0.0, d = 0.0, e = 0.0;
 
     while (continueProgram)
@@ -540,8 +539,10 @@ int main()
                     printf("Please enter the first number or variable (a-e): ");
                     scanf("%s", input1);
                     if (input1[0] >= 'a' && input1[0] <= 'e')
-                        num1 = (input1[0] == 'a') ? a : (input1[0] == 'b') ? b : 
-                               (input1[0] == 'c') ? c : (input1[0] == 'd') ? d : e;
+                        num1 = (input1[0] == 'a') ? a : (input1[0] == 'b') ? b
+                                                    : (input1[0] == 'c')   ? c
+                                                    : (input1[0] == 'd')   ? d
+                                                                           : e;
                     else
                         sscanf(input1, "%f", &num1);
 
@@ -551,8 +552,10 @@ int main()
                     printf("Please enter the second number or variable (a-e): ");
                     scanf("%s", input2);
                     if (input2[0] >= 'a' && input2[0] <= 'e')
-                        num2 = (input2[0] == 'a') ? a : (input2[0] == 'b') ? b : 
-                               (input2[0] == 'c') ? c : (input2[0] == 'd') ? d : e;
+                        num2 = (input2[0] == 'a') ? a : (input2[0] == 'b') ? b
+                                                    : (input2[0] == 'c')   ? c
+                                                    : (input2[0] == 'd')   ? d
+                                                                           : e;
                     else
                         sscanf(input2, "%f", &num2);
 
@@ -605,8 +608,10 @@ int main()
                     printf("Please enter the number or variable (a-e): ");
                     scanf("%s", input);
                     if (input[0] >= 'a' && input[0] <= 'e')
-                        num = (input[0] == 'a') ? a : (input[0] == 'b') ? b : 
-                              (input[0] == 'c') ? c : (input[0] == 'd') ? d : e;
+                        num = (input[0] == 'a') ? a : (input[0] == 'b') ? b
+                                                  : (input[0] == 'c')   ? c
+                                                  : (input[0] == 'd')   ? d
+                                                                        : e;
                     else
                         sscanf(input, "%f", &num);
 
