@@ -31,7 +31,7 @@ int main()
 
     for (int i = 0; i < n; i++)
     {
-        arr[i] = ((rand() % 2001) - 1000);
+        arr[i] = ((rand() % 2001) - 1000); // Random number between -1000 and 1000
     }
     printf("Unsorted array: ");
     for (int i = 0; i < n; i++)
@@ -43,8 +43,8 @@ int main()
     bubbleSort(arr, n);
     clock_t end = clock();
 
-    float elapse_time = ((float)(end - start));
-    // print each elemt of the array
+    float elapse_time = ((end - start) / CLOCKS_PER_SEC);
+    
     printf("Sorted array: ");
     for (int i = 0; i < n; i++)
     {
