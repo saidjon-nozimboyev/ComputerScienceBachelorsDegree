@@ -51,26 +51,31 @@ float getNumberOrVariable(float a, float b, float c, float d, float e)
 {
     char input[100];
     fgets(input, sizeof(input), stdin);
-    
+
     // Remove newline character
     input[strcspn(input, "\n")] = 0;
-    
+
     if (strlen(input) == 1 && input[0] >= 'a' && input[0] <= 'e')
     {
-        switch(input[0])
+        switch (input[0])
         {
-            case 'a': return a;
-            case 'b': return b;
-            case 'c': return c;
-            case 'd': return d;
-            case 'e': return e;
+        case 'a':
+            return a;
+        case 'b':
+            return b;
+        case 'c':
+            return c;
+        case 'd':
+            return d;
+        case 'e':
+            return e;
         }
     }
-    
+
     float num;
     if (sscanf(input, "%f", &num) == 1)
         return num;
-        
+
     printf("Invalid input. Please enter a valid number or variable (a-e): ");
     return getNumberOrVariable(a, b, c, d, e);
 }
