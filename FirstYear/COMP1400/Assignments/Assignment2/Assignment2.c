@@ -203,8 +203,8 @@ void displayMenu()
 {
     printf("\nWelcome to my Command-Line Calculator (CLC) \n");
     printf("Developer: Saidjon Nozimboev\n");
-    printf("Version: 1\n");
-    printf("Date: 2/28/2025\n");
+    printf("Version: 2\n");
+    printf("Date: 2/27/2025\n");
     printf("\n");
 
     printf("Select one of the following items: \n");
