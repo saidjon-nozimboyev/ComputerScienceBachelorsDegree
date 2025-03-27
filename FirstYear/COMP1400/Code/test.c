@@ -41,7 +41,12 @@ int main() {
             putchar(k % 80 ? b[k] : 10);  // Print line by line
         A += 0.04;  // Rotate around X-axis
         B += 0.02;  // Rotate around Z-axis
-        usleep(9000);  // Slow down animation
+        usleep(100);  // Slow down animation
     }
     return 0;
 }
+
+// Al gorithm
+// Al gebra
+// 
+// from which country and name?
