@@ -3,17 +3,15 @@
 #include <ctype.h>
 #include <string.h>
 
-// Basic math operations
 float add(float a, float b) { return a + b; }
 float sub(float a, float b) { return a - b; }
 float mult(float a, float b) { return a * b; }
 float divide(float a, float b) { return a / b; }
 float mod(float a, float b) { return fmodf(a, b); }
-float power(float a, float b) { return powf(a, b); }
-float findMax(float a, float b) { return fmaxf(a, b); }
-float findMin(float a, float b) { return fminf(a, b); }
+float power(float a, float b) { return pow(a, b); }
+float findMax(float a, float b) { return maxf(a, b); }
+float findMin(float a, float b) { return minf(a, b); }
 
-// Unary operations
 float squareRoot(float a) { return sqrtf(a); }
 float logarithm(float a) { return logf(a); }
 float exponent(float a) { return expf(a); }
@@ -52,7 +50,6 @@ float getNumberOrVariable(float a, float b, float c, float d, float e)
     char input[100];
     fgets(input, sizeof(input), stdin);
 
-    // Remove newline character
     input[strcspn(input, "\n")] = 0;
 
     if (strlen(input) == 1 && input[0] >= 'a' && input[0] <= 'e')
