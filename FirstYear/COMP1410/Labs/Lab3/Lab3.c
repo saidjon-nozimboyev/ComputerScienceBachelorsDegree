@@ -10,7 +10,17 @@ int main()
     int num;
     printf("Please enter number: ");
     scanf("%d", &num);
+    printf("Testing Iterate Original: ");
     Iterate_Original(num);
+    printf("\n");
+
+    printf("Testing Iterate Reverse: ");
+    Iterate_Reverse(num);
+    printf("\n");
+
+    printf("Testing Recursion Reverse: ");
+    Recursion_Reverse(num);
+    printf("\n");
 }
 
 int Recursion_Reverse(int num)
@@ -36,4 +46,11 @@ void Iterate_Original(int num)
         reverse /= 10;
     }
 }
-void Iterate_Reverse(int num);
+void Iterate_Reverse(int num)
+{
+    while (num != 0)
+    {
+        printf("%d ", num % 10);
+        num /= 10;
+    }
+}
