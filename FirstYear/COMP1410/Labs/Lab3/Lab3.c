@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-// int Recursion_Original(int num);
+int Recursion_Original(int num);
 int Recursion_Reverse(int num);
 void Iterate_Original(int num);
 void Iterate_Reverse(int num);
@@ -17,9 +17,14 @@ int main()
     printf("Testing Iterate Reverse: ");
     Iterate_Reverse(num);
     printf("\n");
+    printf("\n");
 
     printf("Testing Recursion Reverse: ");
     Recursion_Reverse(num);
+    printf("\n");
+
+    printf("Testing Recursion Original: ");
+    Recursion_Original(num);
     printf("\n");
 }
 
@@ -30,6 +35,16 @@ int Recursion_Reverse(int num)
     printf("%d ", num % 10);
     num = num / 10;
     return Recursion_Reverse(num);
+}
+
+int Recursion_Original(int num)
+{
+    if (num == 0)
+        return 1;
+    int temp = num % 10;
+    num = num / 10;
+    Recursion_Original(num);
+    printf("%d ", temp);
 }
 
 void Iterate_Original(int num)
