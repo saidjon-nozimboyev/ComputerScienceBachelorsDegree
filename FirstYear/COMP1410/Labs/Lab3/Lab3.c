@@ -44,7 +44,7 @@ int Recursion_Original(int num)
     int temp = num % 10;
     num = num / 10;
     Recursion_Original(num);
-    printf("%d ", temp);
+    printf("%d ", temp); // executed after the function is over, the temp is recorded in memory and printed
 }
 
 void Iterate_Original(int num)
