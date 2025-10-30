@@ -15,14 +15,14 @@ void computeRowAverage(int production[3][4])
 
 int main()
 {
-    int product[3][4];
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 4; j++)
-        {
-            scanf("%d", &product[i][j]);
-        }
-    }
+    int product[3][4] = {{120, 135, 150, 140}, {90, 100, 95, 110}, {200,210,190, 205}};
+    // for (int i = 0; i < 3; i++)
+    // {
+    //     for (int j = 0; j < 4; j++)
+    //     {
+    //         scanf("%d", &product[i][j]);
+    //     }
+    // }
     computeRowAverage(product);
     // for (int i = 0; i < 3; i++)
     // {
