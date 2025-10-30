@@ -23,7 +23,7 @@ void main()
     //  {
     //      if (isPrime(i)) // check for a prime number
     //      {
-    //          while (num % i == 0) // dividing to its prime factors
+    //          while (num % i == 0) // dividing to its prime factors 
     //          {
     //                  printf("%d ", i);
     //                  num /= i;
