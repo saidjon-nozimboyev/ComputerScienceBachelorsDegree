@@ -3,6 +3,14 @@
 
 void CalculateSingleStudentGrade();
 void CalculateMultipleStudentsGrades();
+void SortArray(float arr[], int size);
+float FindMax(float arr[], int size);
+float FindSum(float arr[], int size);
+float FindMedian(float arr[], int size);
+float CalculateFinalGrade(float earnedMarks[], float MaxAllotedMarks[], float weights[], int size);
+double CalculateMedian(float arr[], int size);
+double CalculateAverage(float arr[], int size);
+char CalculateLetterGrade(float grade);
 
 int main()
 {
@@ -42,7 +50,6 @@ void CalculateSingleStudentGrade()
     float weights[numComponents];
     float MaxAllotedMarks[numComponents];
     float earnedMarks[numComponents];
-    float finalMarks = 0;
 
     for (int i = 0; i < numComponents; i++)
     {
@@ -60,11 +67,14 @@ void CalculateSingleStudentGrade()
     {
         printf("Enter marks obtained for %s: ", componentNames[i]);
         scanf("%f", &earnedMarks[i]);
-        finalMarks += (earnedMarks[i] / MaxAllotedMarks[i]) * (weights[i]/100) * 100;
     }
+    
+    float finalMarks = CalculateFinalGrade(earnedMarks, MaxAllotedMarks, weights, numComponents);
+    char letterGrade = CalculateLetterGrade(finalMarks);
 
     printf("--Final Grade--\n");
     printf("Final Weighted Grade: %.2f%%\n", finalMarks);
+    printf("Letter Grade: %c\n", letterGrade);
 }
 
 void CalculateMultipleStudentsGrades()
@@ -106,40 +116,81 @@ void CalculateMultipleStudentsGrades()
             scanf("%f", &score);
             total += (score / MaxAllotedMarks[i]) * (weights[i]/100) * 100;
         }
+
         finalGrades[s] = total;
+
         printf("Final Weighted Grade: %.0f%%\n", total);
-        if (total >= 90) printf("Letter Grade: A+\n");
-        else if (total >= 80) printf("Letter Grade: A\n");
-        else if (total >= 70) printf("Letter Grade: B\n");
-        else if (total >= 60) printf("Letter Grade: C\n");
-        else if (total >= 50) printf("Letter Grade: D\n");
-        else printf("Letter Grade: F\n");
+        char letterGrade = CalculateLetterGrade(total);
+        printf("Letter Grade: %c\n", letterGrade);
     }
 
-    for (int i = 0; i < numStudents - 1; i++)
-        for (int j = i + 1; j < numStudents; j++)
-            if (finalGrades[i] > finalGrades[j])
-            {
-                temp = finalGrades[i];
-                finalGrades[i] = finalGrades[j];
-                finalGrades[j] = temp;
-            }
+    SortArray(finalGrades, numStudents);
 
-    float max = finalGrades[numStudents - 1];
-    float sum = 0;
-    for (int i = 0; i < numStudents; i++) 
-        sum += finalGrades[i];
+    float max = FindMax(finalGrades, numStudents);
+
+    float sum = FindSum(finalGrades, numStudents);
 
     float avg = sum / numStudents;
 
-    float median;
-    if (numStudents % 2 == 0)
-        median = (finalGrades[numStudents/2 - 1] + finalGrades[numStudents/2]) / 2;
-    else
-        median = finalGrades[numStudents/2];
+    float median = FindMedian(finalGrades, numStudents);
 
     printf("Class Summary:\n");
     printf("Maximum: %.2f\n", max);
     printf("Average: %.2f\n", avg);
     printf("Median: %.2f\n", median);
+}
+
+float CalculateFinalGrade(float earnedMarks[], float MaxAllotedMarks[], float weights[], int size)
+{
+    double finalGrade = 0.0;
+    for (int i = 0; i < size; i++)
+    {
+        finalGrade += (earnedMarks[i] / MaxAllotedMarks[i]) * (weights[i] / 100) * 100;
+    }
+    return finalGrade;
+}
+
+char CalculateLetterGrade(float grade)
+{
+    if (grade >= 80) return 'A';
+    else if (grade >= 70) return 'B';
+    else if (grade >= 60) return 'C';
+    else if (grade >= 50) return 'D';
+    else return 'F';
+}
+
+void SortArray(float arr[], int size)
+{
+    float temp;
+    for (int i = 0; i < size - 1; i++)
+        for (int j = i + 1; j < size; j++)
+            if (arr[i] > arr[j])
+            {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+}
+
+float FindMax(float arr[], int size)
+{
+    return arr[size - 1];
+}
+
+float FindSum(float arr[], int size)
+{
+    float sum = 0.0;
+    for (int i = 0; i < size; i++)
+    {
+        sum += arr[i];
+    }
+    return sum;
+}
+
+float FindMedian(float arr[], int size)
+{
+    if (size % 2 == 0)
+        return (arr[size/2 - 1] + arr[size/2]) / 2;
+    else
+        return arr[size/2];
 }
