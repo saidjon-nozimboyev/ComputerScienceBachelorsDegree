@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include <math.h> 
+#include <math.h>
 
 void CalculateSingleStudentGrade();
 void CalculateMultipleStudentsGrades();
@@ -11,7 +11,7 @@ float FindSumRecursive(float arr[], int size);
 float FindMedian(float arr[], int size);
 
 float CalculateFinalGrade(float earnedMarks[], float MaxAllotedMarks[], float weights[], int size);
-const char* CalculateLetterGrade(float grade); 
+const char* CalculateLetterGrade(float grade);
 
 int running = 1;
 
@@ -19,7 +19,7 @@ int main()
 {
     while (running)
     {
-        printf("Grade Calculator Menu:\n");
+        printf("\n=== Grade Calculator Menu ===\n");
         printf("1. Calculate grade for a single student\n");
         printf("2. Calculate grades for multiple students\n");
         printf("3. Exit\n");
@@ -37,54 +37,94 @@ int main()
                 CalculateMultipleStudentsGrades();
                 break;
             case 3:
-                printf("HAVE A GOOD DAY\n");
+                printf("Have a good day!\n");
                 running = 0;
                 break;
             default:
                 printf("Invalid option. Please try again.\n");
         }
     }
+    return 0;
 }
 
 void CalculateSingleStudentGrade()
 {
-    printf("Number of components: ");
     int numComponents;
+    printf("\nNumber of components: ");
     scanf("%d", &numComponents);
-    
+
+    if (numComponents <= 0)
+    {
+        printf("Number of components must be positive.\n");
+        return;
+    }
+
     char componentNames[numComponents][20];
     float weights[numComponents];
     float MaxAllotedMarks[numComponents];
     float earnedMarks[numComponents];
 
+    float totalWeight = 0;
+
     for (int i = 0; i < numComponents; i++)
     {
-        printf("Component %d: \n", i + 1);
+        printf("\nComponent %d:\n", i + 1);
         printf("Name: ");
-        scanf(" %49[^\n]", componentNames[i]);
-        printf("Weight: ");
-        scanf("%f", &weights[i]);
-        printf("Max Alloted Marks: ");
-        scanf("%f", &MaxAllotedMarks[i]);
+        scanf(" %19[^\n]", componentNames[i]);
+
+        do
+        {
+            printf("Weight: ");
+            scanf("%f", &weights[i]);
+            if (weights[i] <= 0)
+            {
+                printf("Weight must be positive.\n");
+                printf("Enter a valid weight.\n");
+            }
+        } while (weights[i] <= 0);
+
+        do
+        {
+            printf("Max allotted marks: ");
+            scanf("%f", &MaxAllotedMarks[i]);
+            if (MaxAllotedMarks[i] <= 0)
+            {
+                printf("Maximum marks must be positive.\n");
+                printf("Enter valid maximum marks.\n");
+            }
+        } while (MaxAllotedMarks[i] <= 0);
+
+        totalWeight += weights[i];
     }
 
-    printf("--Summary of Score--\n");
+    if ((totalWeight - 100.0) !=0)
+    {
+        printf("\nTotal component weights must equal 100 (current total = %.2f)\n", totalWeight);
+        return;
+    }
+
+    printf("\n-- Enter student scores --\n");
     for (int i = 0; i < numComponents; i++)
     {
-        printf("Enter marks obtained for %s: ", componentNames[i]);
-        scanf("%f", &earnedMarks[i]);
+        do
+        {
+            printf("Score for %s (Max %.2f): ", componentNames[i], MaxAllotedMarks[i]);
+            scanf("%f", &earnedMarks[i]);
+            if (earnedMarks[i] < 0 || earnedMarks[i] > MaxAllotedMarks[i])
+                printf("Invalid score. It must be between 0 and %.2f\n", MaxAllotedMarks[i]);
+        } while (earnedMarks[i] < 0 || earnedMarks[i] > MaxAllotedMarks[i]);
     }
-    
+
     float finalMarks = CalculateFinalGrade(earnedMarks, MaxAllotedMarks, weights, numComponents);
     int roundedGrade = (int)round(finalMarks);
     const char* letterGrade = CalculateLetterGrade(roundedGrade);
 
-    printf("--Final Grade--\n");
+    printf("\n-- Final Grade --\n");
     printf("Final Weighted Grade: %.2f (rounded to %d)\n", finalMarks, roundedGrade);
     printf("Letter Grade: %s\n", letterGrade);
-    
-    printf("Would you like to calculate another grade? (1 for Yes / 0 for No): ");
+
     int again;
+    printf("\nWould you like to calculate another grade? (1 for Yes / 0 for No): ");
     scanf("%d", &again);
     if (!again)
         running = 0;
@@ -93,44 +133,90 @@ void CalculateSingleStudentGrade()
 void CalculateMultipleStudentsGrades()
 {
     int numComponents;
-    printf("Number of components: ");
+    printf("\nNumber of components: ");
     scanf("%d", &numComponents);
+
+    if (numComponents <= 0)
+    {
+        printf("Number of components must be positive.\n");
+        return;
+    }
 
     char componentNames[numComponents][20];
     float weights[numComponents];
     float MaxAllotedMarks[numComponents];
 
+    float totalWeight = 0;
+
     for (int i = 0; i < numComponents; i++)
     {
-        printf("Component %d:\n", i + 1);
+        printf("\nComponent %d:\n", i + 1);
         printf("Name: ");
-        scanf(" %49[^\n]", componentNames[i]);
-        printf("Weight: ");
-        scanf("%f", &weights[i]);
-        printf("Max Allocated Point: ");
-        scanf("%f", &MaxAllotedMarks[i]);
+        scanf(" %19[^\n]", componentNames[i]);
+
+        do
+        {
+            printf("Weight: ");
+            scanf("%f", &weights[i]);
+            if (weights[i] <= 0)
+            {
+                printf("Weight must be positive.\n");
+                printf("Enter a valid weight.\n");
+            }
+        } while (weights[i] <= 0);
+
+        do
+        {
+            printf("Max allotted marks: ");
+            scanf("%f", &MaxAllotedMarks[i]);
+            if (MaxAllotedMarks[i] <= 0)
+            {
+                printf("Maximum marks must be positive.\n");
+                printf("Enter valid maximum marks.\n");
+            }
+        } while (MaxAllotedMarks[i] <= 0);
+
+        totalWeight += weights[i];
+    }
+
+    if ((totalWeight - 100.0) != 0)
+    {
+        printf("\nTotal component weights must equal 100 (current total = %.2f)\n", totalWeight);
+        return;
     }
 
     int numStudents;
-    printf("Number of students: ");
+    printf("\nNumber of students: ");
     scanf("%d", &numStudents);
+
+    if (numStudents <= 0)
+    {
+        printf("Number of students must be positive.\n");
+        return;
+    }
 
     float finalGrades[numStudents];
 
     for (int s = 0; s < numStudents; s++)
     {
-        printf("-- Student %d --\n", s + 1);
+        printf("\n-- Student %d --\n", s + 1);
         float total = 0;
+
         for (int i = 0; i < numComponents; i++)
         {
             float score;
-            printf("Score for \"%s\": ", componentNames[i]);
-            scanf("%f", &score);
+            do
+            {
+                printf("Score for %s (Max %.2f): ", componentNames[i], MaxAllotedMarks[i]);
+                scanf("%f", &score);
+                if (score < 0 || score > MaxAllotedMarks[i])
+                    printf("Invalid score. It must be between 0 and %.2f\n", MaxAllotedMarks[i]);
+            } while (score < 0 || score > MaxAllotedMarks[i]);
+
             total += (score / MaxAllotedMarks[i]) * (weights[i] / 100) * 100;
         }
 
         finalGrades[s] = total;
-
         int roundedGrade = (int)round(total);
         const char* letterGrade = CalculateLetterGrade(roundedGrade);
 
@@ -149,22 +235,25 @@ void CalculateMultipleStudentsGrades()
     printf("Maximum: %.2f\n", max);
     printf("Average: %.2f\n", avg);
     printf("Median: %.2f\n", median);
+
+    printf("\nWould you like to calculate another set of grades? (1 for Yes / 0 for No): ");
+    int again;
+    scanf("%d", &again);
+    if (!again)
+        running = 0;
 }
 
 float CalculateFinalGrade(float earnedMarks[], float MaxAllotedMarks[], float weights[], int size)
 {
-    double finalGrade = 0.0;
+    float finalGrade = 0.0;
     for (int i = 0; i < size; i++)
-    {
         finalGrade += (earnedMarks[i] / MaxAllotedMarks[i]) * (weights[i] / 100) * 100;
-    }
     return finalGrade;
 }
 
-// Updated letter grade function using your exact table
 const char* CalculateLetterGrade(float grade)
 {
-    if (grade >= 90 && grade <= 100)
+    if (grade >= 90)
         return "A+";
     else if (grade >= 85)
         return "A";
@@ -186,12 +275,11 @@ const char* CalculateLetterGrade(float grade)
 
 void SortArray(float arr[], int size)
 {
-    float temp;
     for (int i = 0; i < size - 1; i++)
         for (int j = i + 1; j < size; j++)
             if (arr[i] > arr[j])
             {
-                temp = arr[i];
+                float temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
             }
@@ -203,7 +291,7 @@ float FindMax(float arr[], int size)
 }
 
 float FindSumRecursive(float arr[], int size)
-{   
+{
     if (size == 0)
         return 0;
     return arr[size - 1] + FindSumRecursive(arr, size - 1);
@@ -212,7 +300,7 @@ float FindSumRecursive(float arr[], int size)
 float FindMedian(float arr[], int size)
 {
     if (size % 2 == 0)
-        return (arr[size/2 - 1] + arr[size/2]) / 2;
+        return (arr[size / 2 - 1] + arr[size / 2]) / 2;
     else
-        return arr[size/2];
+        return arr[size / 2];
 }
