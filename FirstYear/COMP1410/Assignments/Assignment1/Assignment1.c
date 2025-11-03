@@ -1,42 +1,48 @@
 #include <stdio.h>
 #include <string.h>
+#include <math.h> 
 
 void CalculateSingleStudentGrade();
 void CalculateMultipleStudentsGrades();
 void SortArray(float arr[], int size);
+
 float FindMax(float arr[], int size);
-float FindSum(float arr[], int size);
+float FindSumRecursive(float arr[], int size);
 float FindMedian(float arr[], int size);
+
 float CalculateFinalGrade(float earnedMarks[], float MaxAllotedMarks[], float weights[], int size);
-double CalculateMedian(float arr[], int size);
-double CalculateAverage(float arr[], int size);
-char CalculateLetterGrade(float grade);
+const char* CalculateLetterGrade(float grade); 
+
+int running = 1;
 
 int main()
 {
-    printf("Weighted Grade Calculation Program: \n");
-    printf("===================================\n");
-    printf("1. Single Student Grades\n");
-    printf("2. Multiple Students Grades\n");
-    printf("3. Exit\n");
-    printf("===================================\n");
-    int choice;
-    printf("Please enter your choice(1/2/3): ");
-    scanf("%d", &choice);
-
-    switch (choice)
+    while (running)
     {
-    case 1:
-        CalculateSingleStudentGrade();
-        break;
-    case 2:
-        CalculateMultipleStudentsGrades();
-        break;
-    case 3:
-        printf("--- HAVE A GOOD DAY! ---\n");
-        break;
-    default:
-        break;
+        printf("Grade Calculator Menu:\n");
+        printf("1. Calculate grade for a single student\n");
+        printf("2. Calculate grades for multiple students\n");
+        printf("3. Exit\n");
+        printf("Select an option (1/2/3): ");
+        
+        int choice;
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+            case 1:
+                CalculateSingleStudentGrade();
+                break;
+            case 2:
+                CalculateMultipleStudentsGrades();
+                break;
+            case 3:
+                printf("HAVE A GOOD DAY\n");
+                running = 0;
+                break;
+            default:
+                printf("Invalid option. Please try again.\n");
+        }
     }
 }
 
@@ -46,7 +52,7 @@ void CalculateSingleStudentGrade()
     int numComponents;
     scanf("%d", &numComponents);
     
-    char componentNames[numComponents][50];
+    char componentNames[numComponents][20];
     float weights[numComponents];
     float MaxAllotedMarks[numComponents];
     float earnedMarks[numComponents];
@@ -70,11 +76,18 @@ void CalculateSingleStudentGrade()
     }
     
     float finalMarks = CalculateFinalGrade(earnedMarks, MaxAllotedMarks, weights, numComponents);
-    char letterGrade = CalculateLetterGrade(finalMarks);
+    int roundedGrade = (int)round(finalMarks);
+    const char* letterGrade = CalculateLetterGrade(roundedGrade);
 
     printf("--Final Grade--\n");
-    printf("Final Weighted Grade: %.2f%%\n", finalMarks);
-    printf("Letter Grade: %c\n", letterGrade);
+    printf("Final Weighted Grade: %.2f (rounded to %d)\n", finalMarks, roundedGrade);
+    printf("Letter Grade: %s\n", letterGrade);
+    
+    printf("Would you like to calculate another grade? (1 for Yes / 0 for No): ");
+    int again;
+    scanf("%d", &again);
+    if (!again)
+        running = 0;
 }
 
 void CalculateMultipleStudentsGrades()
@@ -83,7 +96,7 @@ void CalculateMultipleStudentsGrades()
     printf("Number of components: ");
     scanf("%d", &numComponents);
 
-    char componentNames[numComponents][50];
+    char componentNames[numComponents][20];
     float weights[numComponents];
     float MaxAllotedMarks[numComponents];
 
@@ -103,7 +116,6 @@ void CalculateMultipleStudentsGrades()
     scanf("%d", &numStudents);
 
     float finalGrades[numStudents];
-    float temp;
 
     for (int s = 0; s < numStudents; s++)
     {
@@ -114,27 +126,26 @@ void CalculateMultipleStudentsGrades()
             float score;
             printf("Score for \"%s\": ", componentNames[i]);
             scanf("%f", &score);
-            total += (score / MaxAllotedMarks[i]) * (weights[i]/100) * 100;
+            total += (score / MaxAllotedMarks[i]) * (weights[i] / 100) * 100;
         }
 
         finalGrades[s] = total;
 
-        printf("Final Weighted Grade: %.0f%%\n", total);
-        char letterGrade = CalculateLetterGrade(total);
-        printf("Letter Grade: %c\n", letterGrade);
+        int roundedGrade = (int)round(total);
+        const char* letterGrade = CalculateLetterGrade(roundedGrade);
+
+        printf("Final Weighted Grade: %.2f (rounded to %d)\n", total, roundedGrade);
+        printf("Letter Grade: %s\n", letterGrade);
     }
 
     SortArray(finalGrades, numStudents);
 
     float max = FindMax(finalGrades, numStudents);
-
-    float sum = FindSum(finalGrades, numStudents);
-
+    float sum = FindSumRecursive(finalGrades, numStudents);
     float avg = sum / numStudents;
-
     float median = FindMedian(finalGrades, numStudents);
 
-    printf("Class Summary:\n");
+    printf("\n-- Class Summary --\n");
     printf("Maximum: %.2f\n", max);
     printf("Average: %.2f\n", avg);
     printf("Median: %.2f\n", median);
@@ -150,13 +161,27 @@ float CalculateFinalGrade(float earnedMarks[], float MaxAllotedMarks[], float we
     return finalGrade;
 }
 
-char CalculateLetterGrade(float grade)
+// Updated letter grade function using your exact table
+const char* CalculateLetterGrade(float grade)
 {
-    if (grade >= 80) return 'A';
-    else if (grade >= 70) return 'B';
-    else if (grade >= 60) return 'C';
-    else if (grade >= 50) return 'D';
-    else return 'F';
+    if (grade >= 90 && grade <= 100)
+        return "A+";
+    else if (grade >= 85)
+        return "A";
+    else if (grade >= 80)
+        return "A-";
+    else if (grade >= 75)
+        return "B+";
+    else if (grade >= 70)
+        return "B";
+    else if (grade >= 65)
+        return "C+";
+    else if (grade >= 60)
+        return "C";
+    else if (grade >= 50)
+        return "D";
+    else
+        return "F";
 }
 
 void SortArray(float arr[], int size)
@@ -177,14 +202,11 @@ float FindMax(float arr[], int size)
     return arr[size - 1];
 }
 
-float FindSum(float arr[], int size)
-{
-    float sum = 0.0;
-    for (int i = 0; i < size; i++)
-    {
-        sum += arr[i];
-    }
-    return sum;
+float FindSumRecursive(float arr[], int size)
+{   
+    if (size == 0)
+        return 0;
+    return arr[size - 1] + FindSumRecursive(arr, size - 1);
 }
 
 float FindMedian(float arr[], int size)
