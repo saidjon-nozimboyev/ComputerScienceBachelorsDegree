@@ -4,14 +4,14 @@
 
 void CalculateSingleStudentGrade();
 void CalculateMultipleStudentsGrades();
-void SortArray(float arr[], int size);
+void SortArray(double arr[], int size);
 
-float FindMax(float arr[], int size);
-float FindSumRecursive(float arr[], int size);
-float FindMedian(float arr[], int size);
+double FindMax(double arr[], int size);
+double FindSumRecursive(double arr[], int size); // Recursive sum function
+double FindMedian(double arr[], int size);
 
-float CalculateFinalGrade(float earnedMarks[], float MaxAllotedMarks[], float weights[], int size);
-const char* CalculateLetterGrade(float grade);
+double CalculateFinalGrade(double earnedMarks[], double MaxAllotedMarks[], double weights[], int size);
+const char* CalculateLetterGrade(double grade);
 
 int running = 1;
 
@@ -59,18 +59,18 @@ void CalculateSingleStudentGrade()
         return;
     }
 
-    char componentNames[numComponents][20];
-    float weights[numComponents];
-    float MaxAllotedMarks[numComponents];
-    float earnedMarks[numComponents];
+    char componentNames[numComponents][15];
+    double weights[numComponents];
+    double MaxAllotedMarks[numComponents];
+    double earnedMarks[numComponents];
 
-    float totalWeight = 0;
+    double totalWeight = 0;
 
     for (int i = 0; i < numComponents; i++)
     {
         printf("\nComponent %d:\n", i + 1);
         printf("Name: ");
-        scanf(" %19[^\n]", componentNames[i]);
+        scanf(" %14[^\n]", componentNames[i]);
 
         do
         {
@@ -85,7 +85,7 @@ void CalculateSingleStudentGrade()
 
         do
         {
-            printf("Max allotted marks: ");
+            printf("Max allocated marks: ");
             scanf("%f", &MaxAllotedMarks[i]);
             if (MaxAllotedMarks[i] <= 0)
             {
@@ -115,7 +115,7 @@ void CalculateSingleStudentGrade()
         } while (earnedMarks[i] < 0 || earnedMarks[i] > MaxAllotedMarks[i]);
     }
 
-    float finalMarks = CalculateFinalGrade(earnedMarks, MaxAllotedMarks, weights, numComponents);
+    double finalMarks = CalculateFinalGrade(earnedMarks, MaxAllotedMarks, weights, numComponents);
     int roundedGrade = (int)round(finalMarks);
     const char* letterGrade = CalculateLetterGrade(roundedGrade);
 
@@ -142,17 +142,17 @@ void CalculateMultipleStudentsGrades()
         return;
     }
 
-    char componentNames[numComponents][20];
-    float weights[numComponents];
-    float MaxAllotedMarks[numComponents];
+    char componentNames[numComponents][15];
+    double weights[numComponents];
+    double MaxAllotedMarks[numComponents];
 
-    float totalWeight = 0;
+    double totalWeight = 0;
 
     for (int i = 0; i < numComponents; i++)
     {
         printf("\nComponent %d:\n", i + 1);
         printf("Name: ");
-        scanf(" %19[^\n]", componentNames[i]);
+        scanf(" %14[^\n]", componentNames[i]);
 
         do
         {
@@ -167,7 +167,7 @@ void CalculateMultipleStudentsGrades()
 
         do
         {
-            printf("Max allotted marks: ");
+            printf("Max allocated marks: ");
             scanf("%f", &MaxAllotedMarks[i]);
             if (MaxAllotedMarks[i] <= 0)
             {
@@ -195,16 +195,16 @@ void CalculateMultipleStudentsGrades()
         return;
     }
 
-    float finalGrades[numStudents];
+    double finalGrades[numStudents];
 
     for (int s = 0; s < numStudents; s++)
     {
         printf("\n-- Student %d --\n", s + 1);
-        float total = 0;
+        double total = 0;
 
         for (int i = 0; i < numComponents; i++)
         {
-            float score;
+            double score;
             do
             {
                 printf("Score for %s (Max %.2f): ", componentNames[i], MaxAllotedMarks[i]);
@@ -226,10 +226,10 @@ void CalculateMultipleStudentsGrades()
 
     SortArray(finalGrades, numStudents);
 
-    float max = FindMax(finalGrades, numStudents);
-    float sum = FindSumRecursive(finalGrades, numStudents);
-    float avg = sum / numStudents;
-    float median = FindMedian(finalGrades, numStudents);
+    double max = FindMax(finalGrades, numStudents);
+    double sum = FindSumRecursive(finalGrades, numStudents);
+    double avg = sum / numStudents;
+    double median = FindMedian(finalGrades, numStudents);
 
     printf("\n-- Class Summary --\n");
     printf("Maximum: %.2f\n", max);
@@ -243,15 +243,15 @@ void CalculateMultipleStudentsGrades()
         running = 0;
 }
 
-float CalculateFinalGrade(float earnedMarks[], float MaxAllotedMarks[], float weights[], int size)
+double CalculateFinalGrade(double earnedMarks[], double MaxAllotedMarks[], double weights[], int size)
 {
-    float finalGrade = 0.0;
+    double finalGrade = 0.0;
     for (int i = 0; i < size; i++)
         finalGrade += (earnedMarks[i] / MaxAllotedMarks[i]) * (weights[i] / 100) * 100;
     return finalGrade;
 }
 
-const char* CalculateLetterGrade(float grade)
+const char* CalculateLetterGrade(double grade)
 {
     if (grade >= 90)
         return "A+";
@@ -273,31 +273,31 @@ const char* CalculateLetterGrade(float grade)
         return "F";
 }
 
-void SortArray(float arr[], int size)
+void SortArray(double arr[], int size)
 {
     for (int i = 0; i < size - 1; i++)
         for (int j = i + 1; j < size; j++)
             if (arr[i] > arr[j])
             {
-                float temp = arr[i];
+                double temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
             }
 }
 
-float FindMax(float arr[], int size)
+double FindMax(double arr[], int size)
 {
     return arr[size - 1];
 }
 
-float FindSumRecursive(float arr[], int size)
+double FindSumRecursive(double arr[], int size)
 {
     if (size == 0)
         return 0;
     return arr[size - 1] + FindSumRecursive(arr, size - 1);
 }
 
-float FindMedian(float arr[], int size)
+double FindMedian(double arr[], int size)
 {
     if (size % 2 == 0)
         return (arr[size / 2 - 1] + arr[size / 2]) / 2;
