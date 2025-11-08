@@ -19,11 +19,13 @@ int main()
 {
     while (running)
     {
-        printf("\n=== Grade Calculator Menu ===\n");
-        printf("1. Calculate grade for a single student\n");
-        printf("2. Calculate grades for multiple students\n");
+        printf("=====================================\n");
+        printf("Weighted Grade Calculation Program\n");
+        printf("=====================================\n");
+        printf("1. Single student\n");
+        printf("2. Multiple students\n");
         printf("3. Exit\n");
-        printf("Select an option (1/2/3): ");
+        printf("Enter your choice (1/2/3): ");
         
         int choice;
         scanf("%d", &choice);
@@ -37,7 +39,8 @@ int main()
                 CalculateMultipleStudentsGrades();
                 break;
             case 3:
-                printf("Have a good day!\n");
+                printf("--- HAVE A GOOD DAY! ---\n");
+                printf("=====================================\n");
                 running = 0;
                 break;
             default:
@@ -75,7 +78,7 @@ void CalculateSingleStudentGrade()
         do
         {
             printf("Weight: ");
-            scanf("%f", &weights[i]);
+            scanf("%lf", &weights[i]);
             if (weights[i] <= 0)
             {
                 printf("Weight must be positive.\n");
@@ -85,8 +88,8 @@ void CalculateSingleStudentGrade()
 
         do
         {
-            printf("Max allocated marks: ");
-            scanf("%f", &MaxAllotedMarks[i]);
+            printf("Max Allocated Point: ");
+            scanf("%lf", &MaxAllotedMarks[i]);
             if (MaxAllotedMarks[i] <= 0)
             {
                 printf("Maximum marks must be positive.\n");
@@ -97,19 +100,19 @@ void CalculateSingleStudentGrade()
         totalWeight += weights[i];
     }
 
-    if ((totalWeight - 100.0) !=0)
+    if ((totalWeight - 100.0) != 0.0)
     {
         printf("\nTotal component weights must equal 100 (current total = %.2f)\n", totalWeight);
         return;
     }
 
-    printf("\n-- Enter student scores --\n");
+    printf("\n-- Summary of Scores --\n");
     for (int i = 0; i < numComponents; i++)
     {
         do
         {
-            printf("Score for %s (Max %.2f): ", componentNames[i], MaxAllotedMarks[i]);
-            scanf("%f", &earnedMarks[i]);
+            printf("Score for \"%s\" (Max %.2f): ", componentNames[i], MaxAllotedMarks[i]);
+            scanf("%lf", &earnedMarks[i]);
             if (earnedMarks[i] < 0 || earnedMarks[i] > MaxAllotedMarks[i])
                 printf("Invalid score. It must be between 0 and %.2f\n", MaxAllotedMarks[i]);
         } while (earnedMarks[i] < 0 || earnedMarks[i] > MaxAllotedMarks[i]);
@@ -120,11 +123,11 @@ void CalculateSingleStudentGrade()
     const char* letterGrade = CalculateLetterGrade(roundedGrade);
 
     printf("\n-- Final Grade --\n");
-    printf("Final Weighted Grade: %.2f (rounded to %d)\n", finalMarks, roundedGrade);
+    printf("Final Weighted Grade: %d%%\n", roundedGrade);
     printf("Letter Grade: %s\n", letterGrade);
 
     int again;
-    printf("\nWould you like to calculate another grade? (1 for Yes / 0 for No): ");
+    printf("\nWould you like to continue? (1 for Yes / 0 for No): ");
     scanf("%d", &again);
     if (!again)
         running = 0;
@@ -157,7 +160,7 @@ void CalculateMultipleStudentsGrades()
         do
         {
             printf("Weight: ");
-            scanf("%f", &weights[i]);
+            scanf("%lf", &weights[i]);
             if (weights[i] <= 0)
             {
                 printf("Weight must be positive.\n");
@@ -167,8 +170,8 @@ void CalculateMultipleStudentsGrades()
 
         do
         {
-            printf("Max allocated marks: ");
-            scanf("%f", &MaxAllotedMarks[i]);
+            printf("Max Allocated Point: ");
+            scanf("%lf", &MaxAllotedMarks[i]);
             if (MaxAllotedMarks[i] <= 0)
             {
                 printf("Maximum marks must be positive.\n");
@@ -207,8 +210,8 @@ void CalculateMultipleStudentsGrades()
             double score;
             do
             {
-                printf("Score for %s (Max %.2f): ", componentNames[i], MaxAllotedMarks[i]);
-                scanf("%f", &score);
+                printf("Score for \"%s\" (Max %.2f): ", componentNames[i], MaxAllotedMarks[i]);
+                scanf("%lf", &score);
                 if (score < 0 || score > MaxAllotedMarks[i])
                     printf("Invalid score. It must be between 0 and %.2f\n", MaxAllotedMarks[i]);
             } while (score < 0 || score > MaxAllotedMarks[i]);
@@ -220,7 +223,7 @@ void CalculateMultipleStudentsGrades()
         int roundedGrade = (int)round(total);
         const char* letterGrade = CalculateLetterGrade(roundedGrade);
 
-        printf("Final Weighted Grade: %.2f (rounded to %d)\n", total, roundedGrade);
+        printf("Final Weighted Grade: %d%%\n", roundedGrade);
         printf("Letter Grade: %s\n", letterGrade);
     }
 
@@ -228,15 +231,15 @@ void CalculateMultipleStudentsGrades()
 
     double max = FindMax(finalGrades, numStudents);
     double sum = FindSumRecursive(finalGrades, numStudents);
-    double avg = sum / numStudents;
+    double avg = sum / (double)numStudents;
     double median = FindMedian(finalGrades, numStudents);
 
-    printf("\n-- Class Summary --\n");
+    printf("\nClass Summary:\n");
     printf("Maximum: %.2f\n", max);
     printf("Average: %.2f\n", avg);
     printf("Median: %.2f\n", median);
 
-    printf("\nWould you like to calculate another set of grades? (1 for Yes / 0 for No): ");
+    printf("\nWould you like to continue? (1 for Yes / 0 for No): ");
     int again;
     scanf("%d", &again);
     if (!again)
