@@ -38,17 +38,20 @@ int main() {
     float length, width;
     scanf("%f %f", &length, &width);
 
-    struct Rectangle myRect = createRectangle(length, width);
+    struct Rectangle rec = createRectangle(length, width);
     printf("Initial Rectangle -> ");
-    AreaAndPerimeter(myRect);
+    AreaAndPerimeter(rec);
 
-    updateDimensions(&myRect);
-    printf("After update -> Lenght: %.2f, Width: %.2f\n", myRect.lenght, myRect.width);
+    updateDimensions(&rec);
+    printf("After update -> Lenght: %.2f, Width: %.2f\n", rec.lenght, rec.width);
 
-    struct Rectangle doubledRect = doubleDimensions(myRect);
+    struct Rectangle doubledRect = doubleDimensions(rec);
     printf("Doubled Rectangle -> ");
     AreaAndPerimeter(doubledRect);
     
+    printf("\n\nChecking original rectangle remains unchanged -> ");
+    AreaAndPerimeter(rec);
+
     printf("\n");
     return 0;
 }
