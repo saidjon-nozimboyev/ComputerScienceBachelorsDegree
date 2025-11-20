@@ -49,9 +49,5 @@ int main() {
     printf("Doubled Rectangle -> ");
     AreaAndPerimeter(doubledRect);
     
-    printf("\n\nChecking original rectangle remains unchanged -> ");
-    AreaAndPerimeter(rec);
-
-    printf("\n");
     return 0;
 }
