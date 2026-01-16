@@ -20,5 +20,6 @@ public class CarProject
         c2.printInfo();
 
         // Car.make = "Ford"; every make becomes Ford
+        Car.make = "Ford";
     }
 }
