@@ -18,8 +18,9 @@ public class CarProject
         c2.model="Camry";
         c2.year = 2023;
         c2.printInfo();
-
+        
         // Car.make = "Ford"; every make becomes Ford
         Car.make = "Ford";
+        
     }
 }
