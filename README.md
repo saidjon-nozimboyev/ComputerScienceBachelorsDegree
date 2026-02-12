@@ -4,7 +4,7 @@ Hello there! I'm **Saidjon Nozimboev**, a passionate and dedicated bachelor's de
 
 ---
 
-## 🚀 About Me
+##  About Me
 
 - 🎓 **Bachelor's Degree**: Computer Science at University of Windsor.
 - 🌱 **Learning**: Constantly exploring new technologies, tools, and concepts to enhance my skills.
