@@ -1,4 +1,4 @@
-# 👋 Welcome to My GitHub Repository!
+# Welcome to My GitHub Repository!
 
 Hello there! I'm **Saidjon Nozimboev**, a passionate and dedicated bachelor's degree student currently pursuing my studies at University of Windsor. This repository serves as a collection of my projects, coursework, and learning journey throughout my academic career. Feel free to explore, contribute, or connect with me!
 
