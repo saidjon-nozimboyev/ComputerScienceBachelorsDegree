@@ -31,7 +31,7 @@ Here are some of the technologies and tools I frequently use:
 - **Tools**: Git, Docker, VS Code, Jupyter Notebook.
 - **Databases**: MySQL, MongoDB, PostgreSQL.
 
----
+--
 
 ## 📫 Let's Connect!
 
