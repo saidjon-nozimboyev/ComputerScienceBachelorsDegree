@@ -21,7 +21,7 @@ This repository contains a variety of projects, assignments, and personal experi
 - **Personal Projects**: Side projects I've built to explore new technologies or solve real-world problems.
 - **Learning Resources**: Notes, tutorials, and resources I've created to solidify my understanding of key concepts.
 
---
+---
 
 ## 🛠️ Technologies & Tools
 
