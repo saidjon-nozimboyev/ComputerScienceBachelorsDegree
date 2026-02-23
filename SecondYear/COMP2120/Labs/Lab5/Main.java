@@ -1,39 +1,33 @@
 import java.util.Scanner;
 
-public class Main {
+public class Main 
+{
+    public static void main(String[] args) 
+    {
 
-    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
-
-        // 1. Ask for number of words
         System.out.print("Enter number of words: ");
-        int size = sc.nextInt();
+        int size = input.nextInt();
 
-        // 2. Create object
-        Word analyzer = new Word();
+        WordAnalyzer analyzer = new WordAnalyzer();
 
-        // 3. Call inputWords
-        analyzer.inputWords(sc, size);
+        analyzer.inputWords(input, size);
 
-        // 4. Ask for minimum length and starting character
         System.out.print("\nEnter minimum length: ");
-        int minLength = sc.nextInt();
+        int minLength = input.nextInt();
 
         System.out.print("Enter starting character: ");
-        char ch = sc.next().charAt(0);
+        char ch = input.next().charAt(0);
 
-        // 5. Call methods
         String[] longWords = analyzer.getLongWords(minLength);
         String[] startingWords = analyzer.getWordsStartingWith(ch);
 
-        // 6. Display results
         System.out.println("\n--- Words with length >= " + minLength + " ---");
         analyzer.displayWords(longWords);
 
         System.out.println("\n--- Words starting with '" + ch + "' ---");
         analyzer.displayWords(startingWords);
 
-        sc.close();
     }
 }
