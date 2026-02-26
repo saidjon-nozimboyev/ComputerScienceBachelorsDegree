@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- ======================================================
+     File: education.html
+     Description:
+     This page describes my educational background.
+     Demonstrates embedded CSS and inline CSS.
+====================================================== -->
+
+<html>
+
+<head>
+    <title>Education</title>
+
+    <!-- External stylesheet -->
+    <link rel="stylesheet" type="text/css" href="mycss.css">
+
+    <!-- ================= EMBEDDED CSS ================= -->
+    <style>
+        h2 {
+            color: darkblue;
+        }
+
+        .highlight {
+            background-color: #e6f2ff;
+            padding: 15px;
+            border-left: 5px solid #00509d;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Education</h1>
+</header>
+
+<nav>
+    <a href="mybio.html">Home</a>
+    <a href="education.html">Education</a>
+    <a href="work.html">Work Experience</a>
+    <a href="hobbies.html">Hobbies</a>
+</nav>
+
+<main>
+
+    <!-- Academic Background -->
+    <h2>Academic Background</h2>
+
+    <p class="highlight">
+        I am currently completing my Bachelor’s degree in Computer Science
+        at the University of Windsor.
+    </p>
+
+    <!-- Inline CSS Example -->
+    <p style="color: darkgreen;">
+        I continuously expand my knowledge through certifications,
+        online learning, and independent projects.
+    </p>
+
+    <!-- Additional Heading Levels -->
+    <h4>Technical Skills</h4>
+    <p>Programming, problem solving, and web development.</p>
+
+    <h5>Personal Development</h5>
+    <p>Teamwork, communication, and leadership growth.</p>
+
+    <h6>Future Goals</h6>
+    <p>Advanced studies in software engineering and AI.</p>
+
+    <hr />
+
+    <!-- ================= FEEDBACK FORM ================= -->
+    <h3>Contact / Feedback Form</h3>
+
+    <form action="#" method="post">
+
+        <!-- Name Field -->
+        <label>Full Name:</label><br />
+        <input type="text" name="fullname" required><br /><br />
+
+        <!-- Email Field -->
+        <label>Email Address:</label><br />
+        <input type="email" name="email" required><br /><br />
+
+        <!-- Message Field -->
+        <label>Your Message:</label><br />
+        <textarea name="message" rows="5" cols="50"></textarea><br /><br />
+
+        <!-- Submit Button -->
+        <input type="submit" value="Submit">
+
+    </form>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Saidjon Nozimboev</p>
+</footer>
+
+</body>
+</html>
