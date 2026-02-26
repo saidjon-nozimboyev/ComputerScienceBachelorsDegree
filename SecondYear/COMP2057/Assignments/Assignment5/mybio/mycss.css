@@ -1,0 +1,106 @@
+/* =========================================================
+   File: mycss.css
+   Author: Saidjon Nozimboev
+   Course: Assignment #5
+   Description:
+   This external stylesheet controls layout, typography,
+   navigation styling, table formatting, and image display
+   for the entire website.
+========================================================= */
+
+
+/* ======================
+   GLOBAL BODY STYLING
+====================== */
+body {
+    font-family: Arial, Helvetica, sans-serif; /* Clean readable font */
+    background-color: #f2f4f8; /* Light background */
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ======================
+   HEADER STYLING
+====================== */
+header {
+    background-color: #002855;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* ======================
+   NAVIGATION STYLING
+====================== */
+nav {
+    background-color: #00509d;
+    padding: 12px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 15px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+
+/* ======================
+   MAIN CONTENT AREA
+====================== */
+main {
+    padding: 25px;
+    line-height: 1.6;
+}
+
+
+/* ======================
+   FOOTER STYLING
+====================== */
+footer {
+    background-color: #002855;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+
+/* ======================
+   TABLE STYLING (Work Page)
+====================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th {
+    background-color: #00509d;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+
+/* ======================
+   IMAGE STYLING
+====================== */
+img {
+    margin: 15px;
+    border-radius: 5px;
+}
