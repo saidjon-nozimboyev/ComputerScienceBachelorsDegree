@@ -33,7 +33,7 @@ Here are some of the technologies and tools I frequently use:
 
 ---
 
-## 📫 Let's Connect!
+## 📫 Let's Connect
 
 I'm always open to collaborations, discussions, or just a friendly chat. Reach out to me via:
 
