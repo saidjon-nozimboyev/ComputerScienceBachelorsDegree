@@ -1,7 +1,7 @@
 
 class Employee {
 
-    private String employeeName;
+    private String employeeName; // add integral and math1020
     private String employeeID;
     private double salary;
     private double bonusPercentage;
