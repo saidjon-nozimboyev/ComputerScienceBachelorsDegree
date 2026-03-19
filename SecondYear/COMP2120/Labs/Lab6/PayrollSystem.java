@@ -42,7 +42,6 @@ public class PayrollSystem {
         emp3.setAddress("PineStreet 77");
         emp3.setJobTitle("Designer");
 
-        // Display employee info
         displayEmployeeInfo(emp1);
         displayEmployeeInfo(emp2);
         displayEmployeeInfo(emp3);
