@@ -33,7 +33,6 @@ public class PayrollSystem {
         emp2.setAddress("OakRoad 45");
         emp2.setJobTitle("Tester");
 
-        // Employee 3 (Invalid employeeID)
         Employee emp3 = new Employee();
         emp3.setEmployeeName("Charlie Brown");
         emp3.setEmployeeID("123"); // invalid
