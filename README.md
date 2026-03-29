@@ -13,7 +13,7 @@ Hello! I'm **Saidjon Nozimboev**, a passionate and dedicated bachelor's degree s
 
 ---
 
-## 📂 Repository Overview
+## Repository Overview
 
 This repository contains a variety of projects, assignments, and personal experiments that I've worked on during my bachelor's degree. Here's what you'll find:
 
