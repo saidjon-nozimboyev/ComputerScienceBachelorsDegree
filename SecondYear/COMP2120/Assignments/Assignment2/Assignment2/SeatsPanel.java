@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+// GUI to generate seat arrangement
 public class SeatsPanel extends JFrame {
 
     private JTextField rowsField, colsField;
@@ -22,6 +23,7 @@ public class SeatsPanel extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout(10, 10));
 
+        // Input panel
         JPanel inputPanel = new JPanel(new GridLayout(2, 2, 5, 5));
 
         inputPanel.add(new JLabel("Rows:"));
@@ -34,13 +36,14 @@ public class SeatsPanel extends JFrame {
 
         add(inputPanel, BorderLayout.NORTH);
 
+        // Output area
         output = new JTextArea();
         output.setEditable(false);
-        output.setFont(new Font("Monospaced", Font.PLAIN, 14)); 
+        output.setFont(new Font("Monospaced", Font.PLAIN, 14));
 
-        JScrollPane scrollPane = new JScrollPane(output);
-        add(scrollPane, BorderLayout.CENTER);
+        add(new JScrollPane(output), BorderLayout.CENTER);
 
+        // Button
         JButton generateBtn = new JButton("Generate Seats");
         add(generateBtn, BorderLayout.SOUTH);
 
@@ -49,11 +52,13 @@ public class SeatsPanel extends JFrame {
         setVisible(true);
     }
 
+    // Generate seat layout
     private void generateSeats() {
         try {
             int rows = Integer.parseInt(rowsField.getText());
             int cols = Integer.parseInt(colsField.getText());
 
+            // Validate input
             if (rows <= 0 || cols <= 0) {
                 JOptionPane.showMessageDialog(this, "Enter positive numbers!");
                 return;
@@ -61,6 +66,7 @@ public class SeatsPanel extends JFrame {
 
             output.setText("");
 
+            // Create seat labels (A1, A2, etc.)
             for (int r = 0; r < rows; r++) {
                 char letter = (char) ('A' + r);
 
