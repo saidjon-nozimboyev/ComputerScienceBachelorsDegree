@@ -2,6 +2,7 @@ import javax.swing.JOptionPane;
 
 class Employee {
 
+    // Variables for employee information
     private String employeeName;
     private String employeeID;
     private double salary;
@@ -9,8 +10,10 @@ class Employee {
     private String address;
     private String jobTitle;
 
+    // Get employee name
     public String getEmployeeName() { return employeeName; }
 
+    // Set employee name with validation
     public void setEmployeeName(String employeeName) {
         if (employeeName != null && !employeeName.isEmpty()) {
             this.employeeName = employeeName;
@@ -19,8 +22,10 @@ class Employee {
         }
     }
 
+    // Get employee ID
     public String getEmployeeID() { return employeeID; }
 
+    // Set employee ID (must be 6 characters)
     public void setEmployeeID(String employeeID) {
         if (employeeID != null && employeeID.length() == 6) {
             this.employeeID = employeeID;
@@ -29,8 +34,10 @@ class Employee {
         }
     }
 
+    // Get salary
     public double getSalary() { return salary; }
 
+    // Set salary with range validation
     public void setSalary(double salary) {
         if (salary >= 30000 && salary <= 200000) {
             this.salary = salary;
@@ -39,8 +46,10 @@ class Employee {
         }
     }
 
+    // Get bonus percentage
     public double getBonusPercentage() { return bonusPercentage; }
 
+    // Set bonus with validation
     public void setBonusPercentage(double bonusPercentage) {
         if (bonusPercentage >= 0 && bonusPercentage <= 100) {
             this.bonusPercentage = bonusPercentage;
@@ -49,8 +58,10 @@ class Employee {
         }
     }
 
+    // Get address
     public String getAddress() { return address; }
 
+    // Set address (must contain space)
     public void setAddress(String address) {
         if (address != null && address.contains(" ")) {
             this.address = address;
@@ -59,8 +70,10 @@ class Employee {
         }
     }
 
+    // Get job title
     public String getJobTitle() { return jobTitle; }
 
+    // Set job title (only specific roles allowed)
     public void setJobTitle(String jobTitle) {
         if (jobTitle.equals("Manager") || jobTitle.equals("Developer")
                 || jobTitle.equals("Designer") || jobTitle.equals("Tester")) {
@@ -70,6 +83,7 @@ class Employee {
         }
     }
 
+    // Calculate total pay (salary + bonus)
     public double calculateTotalPay() {
         return salary + (salary * bonusPercentage / 100);
     }

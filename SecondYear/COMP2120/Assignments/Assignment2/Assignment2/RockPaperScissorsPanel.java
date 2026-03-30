@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+// GUI for Rock Paper Scissors game
 public class RockPaperScissorsPanel extends JFrame {
 
     private JLabel userLabel, computerLabel, resultLabel;
@@ -18,6 +19,7 @@ public class RockPaperScissorsPanel extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout(10, 10));
 
+        // Top panel to display results
         JPanel topPanel = new JPanel(new GridLayout(3, 1));
 
         userLabel = new JLabel("Your Choice: ", JLabel.CENTER);
@@ -30,6 +32,7 @@ public class RockPaperScissorsPanel extends JFrame {
 
         add(topPanel, BorderLayout.NORTH);
 
+        // Buttons panel
         JPanel buttonPanel = new JPanel(new GridLayout(1, 3, 10, 10));
 
         JButton rockBtn = new JButton("Rock");
@@ -42,6 +45,7 @@ public class RockPaperScissorsPanel extends JFrame {
 
         add(buttonPanel, BorderLayout.CENTER);
 
+        // Button actions
         rockBtn.addActionListener(e -> play("rock"));
         paperBtn.addActionListener(e -> play("paper"));
         scissorsBtn.addActionListener(e -> play("scissors"));
@@ -49,6 +53,7 @@ public class RockPaperScissorsPanel extends JFrame {
         setVisible(true);
     }
 
+    // Game logic
     private void play(String user) {
         String[] options = {"rock", "paper", "scissors"};
         String computer = options[rand.nextInt(3)];
@@ -67,6 +72,7 @@ public class RockPaperScissorsPanel extends JFrame {
             result = "Computer Wins!";
         }
 
+        // Update labels
         userLabel.setText("Your Choice: " + user);
         computerLabel.setText("Computer Choice: " + computer);
         resultLabel.setText("Result: " + result);
