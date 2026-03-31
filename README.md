@@ -23,7 +23,7 @@ This repository contains a variety of projects, assignments, and personal experi
 
 ---
 
-## 🛠️ Technologies & Tools
+## Technologies & Tools
 
 Here are some of the technologies and tools I frequently use:
 
