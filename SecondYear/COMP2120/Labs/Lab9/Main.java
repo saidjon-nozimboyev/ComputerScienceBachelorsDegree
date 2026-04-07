@@ -1,4 +1,9 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,7 +15,7 @@ public class Main {
         input.nextLine();
 
         ArrayList<String> courses = new ArrayList<>();
-
+        
         for (int i = 0; i < n; i++) {
             courses.add(input.nextLine());
         }
