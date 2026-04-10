@@ -33,9 +33,9 @@ public class Main {
         // Convert map to list
         List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
 
-        // for (Map.Entry<String, Integer> entry : list) {
-        //     System.out.println(entry.getKey() + ": " + entry.getValue());
-        // }
+        for (Map.Entry<String, Integer> entry : list) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
 
         // Sort by value 
         Collections.sort(list, (a, b) -> b.getValue() - a.getValue());
