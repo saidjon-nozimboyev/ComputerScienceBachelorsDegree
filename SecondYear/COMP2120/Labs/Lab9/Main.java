@@ -30,7 +30,6 @@ public class Main {
             }
         }
 
-        // Convert map to list
         List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
 
         for (Map.Entry<String, Integer> entry : list) {
