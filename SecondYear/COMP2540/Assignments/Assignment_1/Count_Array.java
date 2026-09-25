@@ -10,7 +10,6 @@ public class Count_Array {
 
         String[] tokens = readWordsFromFile("text.txt");
 
-        // Start timer
         long startTime = System.currentTimeMillis();
 
         Entry<String, Integer> result = countFAST(tokens);
