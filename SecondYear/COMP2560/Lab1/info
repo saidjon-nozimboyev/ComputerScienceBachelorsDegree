@@ -1,0 +1,10 @@
+1. The role of the shell: The shell allows users to interact with the Linux operating system by entering commands.
+2. Absolute vs. relative path: An absolute path starts from / (root), while a relative path starts from the current directory.
+3. ..: Represents the parent directory (one level above the current directory).
+4. Purpose of file permissions: They control who can read, write, and execute files or directories.
+5. 755: Owner has read, write, and execute permissions; group and others have read and execute permissions (rwxr-xr-x).
+6. Process: A process is a program that is currently running.
+7. Purpose of ps: Displays information about currently running processes.
+8. Pipe |: Sends the output of one command as the input to another command.
+9. C source file vs. executable: A C source file contains C code (e.g., info.c), while an executable is the compiled program that can be run (e.g., info).
+10. ./info: Executes the info program located in the current directory.
