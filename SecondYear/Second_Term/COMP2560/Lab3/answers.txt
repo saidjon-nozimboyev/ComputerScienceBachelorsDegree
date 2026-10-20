@@ -1,0 +1,52 @@
+Task 1.1 – Find the Problems
+
+1. Lines 15–18: open() calls
+Problem: The program does not check whether the files opened successfully.
+Effect: The program may use an invalid file descriptor.
+Correction: Check whether each file descriptor is less than zero and report errors using perror().
+
+2. Line 17: Missing O_TRUNC
+Problem: The output file is not cleared if it already exists.
+Effect: Old data may remain at the end of the output file.
+Correction: Add O_TRUNC when opening the output file.
+
+3. Line 23: printf("%s", buffer)
+Problem: The buffer is not guaranteed to contain a null-terminated string.
+Effect: The program may read beyond the buffer or display incorrect data.
+Correction: Use the number of bytes returned by read() instead of treating the data as a string.
+
+4. Lines 24–26: write(..., BUFFER_SIZE)
+Problem: The program always writes 64 bytes instead of the number actually read.
+Effect: Extra or invalid bytes may be written.
+Correction: Write only bytes_read bytes.
+
+5. Lines 24–26: Ignoring the return value of write()
+Problem: The program does not check whether all requested bytes were written.
+Effect: Data may be missing from the output file.
+Correction: Check the return value and loop until all bytes are written.
+
+6. Line 20: Handling read() errors
+Problem: The program does not report errors when read() returns a negative value.
+Effect: The copy may stop without reporting the failure.
+Correction: Check whether bytes_read is less than zero and report the error.
+
+7. Lines 29–30: close() calls
+Problem: The program does not check whether closing the files succeeds.
+Effect: File-related errors may go unnoticed.
+Correction: Check the return value of each close() call.
+
+Task 4 – Questions
+
+Q1. Write 17 bytes because read() returned 17 bytes.
+
+Q2. read() does not add a null terminator. Therefore, printf("%s", buffer) may read beyond the buffer.
+
+Q3. O_TRUNC clears an existing file's contents when it is opened for writing.
+
+Q4. No. write() may write fewer bytes than requested. Use a loop until all bytes are written.
+
+Q5. reverse_memory.c requires more memory because it loads the entire file into memory.
+
+Q6. reverse_seek.c performs more system calls because it uses lseek(), read(), and write() for each byte.
+
+Q7. lseek(fd, -5, SEEK_END) moves the file offset to five bytes before the end of the file.
