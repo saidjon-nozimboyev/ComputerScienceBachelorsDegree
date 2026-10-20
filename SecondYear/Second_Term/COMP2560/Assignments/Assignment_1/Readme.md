@@ -1,12 +1,41 @@
-minifs_assignment/
-├── minifs.c
-├── minifs.h
-├── README.md
-└── screenshots/
-    ├── text_test.png
-    ├── empty_file_test.png
-    ├── binary_test.png
-    └── directory_limit_test.png
+# MiniFS Assignment 01
+
+## Compilation
+
+Compile the program using:
+
+```bash
+gcc -Wall -Wextra minifs.c -o minifs
+```
+
+## Usage Examples
+
+### 1. Create a MiniFS image
+```bash
+./minifs create disk.img
+```
+
+### 2. Add a file
+```bash
+./minifs add disk.img notes.txt
+```
+
+### 3. List stored files
+```bash
+./minifs list disk.img
+```
+
+### 4. Extract a file
+```bash
+./minifs extract disk.img notes.txt recovered.txt
+```
+
+### 5. Verify the extracted file
+```bash
+cmp notes.txt recovered.txt
+```
+
+If cmp produces no output, the files match.
 
 
 ## Testing Results
