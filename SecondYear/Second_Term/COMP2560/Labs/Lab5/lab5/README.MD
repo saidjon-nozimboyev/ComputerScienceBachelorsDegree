@@ -1,4 +1,9 @@
-## 1. Files Included
+# COMP 2560 – System Programming
+## Lab 5: Inter-Process Communication Using Named Pipes (FIFOs)
+
+---
+
+# 1. Files Included
 
 The submission contains the following files:
 
@@ -14,7 +19,7 @@ The submission contains the following files:
 
 All programs were compiled in a Linux environment using GCC.
 
-The following commands were used:
+The following commands were used to compile all four programs:
 
 ```bash
 gcc -Wall -Wextra -std=c11 -pedantic writer.c -o writer
@@ -43,7 +48,7 @@ To avoid interfering with another user's files, a custom FIFO path was used for 
 
 The custom FIFO path is:
 
-```c
+```text
 /tmp/comp2560_lab5_nozimbo_fifo
 ```
 
@@ -57,12 +62,14 @@ The FIFO definition in both programs is:
 
 This path must remain identical in both files.
 
+The reader does not create the FIFO itself. Therefore, when starting the reader first, the FIFO must be created manually using `mkfifo()` or the `mkfifo` terminal command.
+
 For Parts 3 and 4, the following two FIFO paths are used:
 
 - `/tmp/fifo_client_to_server`
 - `/tmp/fifo_server_to_client`
 
-These paths must also match between the client and server programs.
+These paths must match between the client and server programs.
 
 ---
 
@@ -92,6 +99,8 @@ The message sent is:
 Hello from writer!
 ```
 
+The writer waits until a reader connects before completing the communication.
+
 ## Exercise 1.2 – Reader
 
 The reader was compiled using:
@@ -118,57 +127,65 @@ Received: Hello from writer!
 
 Two terminals were used for this test.
 
-Terminal 1:
+Terminal 1 – Start the writer:
 
 ```bash
 ./writer --once
 ```
 
-Terminal 2:
+The writer creates the FIFO and waits for the reader to connect.
+
+Terminal 2 – Start the reader:
 
 ```bash
 ./reader --once
 ```
 
-The writer was started first and waited until the reader connected.
-
-The reader successfully received:
+The reader connects to the writer, receives the message, and displays:
 
 ```text
 Received: Hello from writer!
 ```
+
+The writer-first startup order was tested successfully.
 
 ## Testing Reader First
 
 The lab also requires testing what happens when the reader starts before the writer.
 
-Since the writer removes the FIFO after completing its one-time communication when it created it, the FIFO was manually created before starting the reader.
+Since the reader does not create the FIFO, the named pipe must be created manually before starting the reader.
 
-First, the FIFO was created:
+First, create the FIFO:
 
 ```bash
 mkfifo /tmp/comp2560_lab5_nozimbo_fifo
 ```
 
-Terminal 1:
+Terminal 1 – Start the reader first:
 
 ```bash
 ./reader --once
 ```
 
-Terminal 2:
+The reader waits for a writer to connect. This blocking behavior is expected.
+
+Terminal 2 – Start the writer:
 
 ```bash
 ./writer --once
 ```
 
-The reader waited until the writer connected and successfully received:
+The writer connects to the existing FIFO and sends the message.
+
+Expected reader output:
 
 ```text
 Received: Hello from writer!
 ```
 
-The FIFO was cleaned up after the test:
+The reader-first startup order was also tested successfully.
+
+After both programs terminate, remove the manually created FIFO:
 
 ```bash
 rm -f /tmp/comp2560_lab5_nozimbo_fifo
@@ -188,19 +205,29 @@ The reader continuously receives messages and displays them.
 
 ## Execution Steps
 
-First, the reader was started in Terminal 1:
+Before starting the programs, create the named pipe:
+
+```bash
+rm -f /tmp/comp2560_lab5_nozimbo_fifo
+
+mkfifo /tmp/comp2560_lab5_nozimbo_fifo
+```
+
+Terminal 1 – Start the reader:
 
 ```bash
 ./reader
 ```
 
-Then, the writer was started in Terminal 2:
+The reader opens the FIFO and waits for messages.
+
+Terminal 2 – Start the writer:
 
 ```bash
 ./writer
 ```
 
-The writer accepted messages from the keyboard.
+The writer accepts messages from the keyboard and sends them through the FIFO.
 
 The following messages were used during testing:
 
@@ -226,7 +253,13 @@ When the writer sends `exit`, both programs terminate.
 
 Newline-terminated strings are used to separate messages because a FIFO is a byte stream rather than a message queue.
 
-The reader handles incoming data and separates complete lines instead of assuming that every `read()` call corresponds to one complete message.
+The reader uses `getline()` to accumulate and process complete lines instead of assuming that every `read()` call corresponds to one complete message.
+
+After both programs terminate, remove the FIFO:
+
+```bash
+rm -f /tmp/comp2560_lab5_nozimbo_fifo
+```
 
 Multiple-message communication was tested successfully.
 
@@ -271,7 +304,7 @@ gcc -Wall -Wextra -std=c11 -pedantic client.c -o client
 
 The server must be started first.
 
-Terminal 1:
+Terminal 1 – Start the server:
 
 ```bash
 ./server
@@ -283,7 +316,9 @@ The server displays:
 Server ready. Waiting for client...
 ```
 
-Then, the client was started in Terminal 2:
+Then, open another terminal and start the client.
+
+Terminal 2:
 
 ```bash
 ./client
@@ -293,22 +328,22 @@ The client connects to the server and allows the user to enter messages.
 
 ## Communication Test
 
-The following messages were used to test communication:
+The following messages were used to test communication.
 
-Client:
+Client input:
 
 ```text
 Hello server
 ```
 
-Server:
+Server output:
 
 ```text
 Client: Hello server
 Reply:
 ```
 
-The server replied:
+The server then entered a reply:
 
 ```text
 Hello client!
@@ -320,21 +355,21 @@ The client displayed:
 Server: Hello client!
 ```
 
-A second exchange was also tested:
+A second exchange was also tested.
 
-Client:
+Client input:
 
 ```text
 How are you?
 ```
 
-Server:
+Server reply:
 
 ```text
 I am doing well!
 ```
 
-The client successfully received the server's reply.
+The client successfully received and displayed the server's reply.
 
 ## Termination Test
 
@@ -344,7 +379,13 @@ The client sent:
 exit
 ```
 
-The server received the exit request, sent its goodbye response, and both programs terminated.
+The server received the exit request and sent:
+
+```text
+Goodbye!
+```
+
+The client received the goodbye message, and both programs terminated.
 
 Bidirectional communication and normal termination were tested successfully.
 
@@ -357,6 +398,7 @@ Part 4 improves the client and server programs by checking system call errors an
 The implementation includes error checking for relevant operations, including:
 
 - `mkfifo()`
+- `lstat()`
 - `open()`
 - `read()`
 - `write()`
@@ -367,9 +409,9 @@ The programs also handle unexpected peer termination, including `read()` returni
 
 Open file descriptors are closed when they are no longer needed.
 
-The process responsible for FIFO creation removes the FIFO files using `unlink()` when appropriate.
+The server removes the FIFO files that it created using `unlink()` when appropriate.
 
-The programs also account for the possibility of `SIGPIPE` when attempting to write to a FIFO without an active reader.
+The programs also handle the possibility of `SIGPIPE` when attempting to write to a FIFO without an active reader. Both the client and server ignore `SIGPIPE` so that broken-pipe write errors can be handled instead of immediately terminating the process.
 
 ## Testing Unexpected Server Termination
 
@@ -422,16 +464,19 @@ The remaining FIFO files were manually removed using:
 
 ```bash
 rm -f /tmp/fifo_client_to_server
+
 rm -f /tmp/fifo_server_to_client
 ```
 
-The FIFO files used in Parts 1 and 2 can also be removed using:
+The FIFO used in Parts 1 and 2 can also be removed using:
 
 ```bash
 rm -f /tmp/comp2560_lab5_nozimbo_fifo
 ```
 
-Error handling, unexpected termination detection, and manual cleanup were tested.
+These cleanup commands should only be used after the corresponding programs have terminated.
+
+Error handling, unexpected termination detection, descriptor closing, and manual cleanup were tested.
 
 ---
 
@@ -481,7 +526,7 @@ Part 2 extended the programs to support multiple messages using keyboard input a
 
 Part 3 implemented bidirectional communication using two named pipes and a turn-based request-response protocol.
 
-Part 4 focused on error handling, unexpected process termination, closing file descriptors, and cleaning up FIFO resources.
+Part 4 focused on error handling, unexpected process termination, closing file descriptors, handling `SIGPIPE`, and cleaning up FIFO resources.
 
 Part 5 covered the differences between named pipes, regular files, and anonymous pipes, along with FIFO buffering and synchronization.
 
