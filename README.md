@@ -35,7 +35,7 @@ Here are some of the technologies and tools I frequently use:
 
 ##  Let's Connect
 
-I'm always open to collaborations, discussions, or just a friendly chat. Reach out to me via:
+I'm always open to collaborations, discussions, or just a friendly chat. Reach to me via:
 
 - **LinkedIn**: [Saidjon Nozimboev](https://www.linkedin.com/in/saidjon-nozimboev-21661a28a/)
 
